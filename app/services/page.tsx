@@ -135,7 +135,7 @@ export default function ServicesPage() {
             <SubHeading>Case Studies</SubHeading>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
               {[
-                { name: "EasyCare", tag: "Product, Technical, Growth" },
+                { name: "EzzyCare", tag: "Product, Technical, Growth" },
                 { name: "RentBook", tag: "Product, Technical" },
                 { name: "FoodBridge", tag: "Product, Technical, Growth" },
               ].map(({ name, tag }) => (
@@ -207,21 +207,6 @@ export default function ServicesPage() {
                   name: "AttriHub",
                   platform: "Web",
                   body: "A simple, no code attribution and UTM tool for growth teams.",
-                },
-                {
-                  name: "Planitics AI",
-                  platform: "Web",
-                  body: "A growth intelligence platform helping marketing and growth teams plan, simulate, and analyze brand campaigns.",
-                },
-                {
-                  name: "Product Slice HQ",
-                  platform: "Web, mobile coming later",
-                  body: "A free resource community for product and growth teams.",
-                },
-                {
-                  name: "ProductVerseHQ",
-                  platform: "Web",
-                  body: "A portfolio directory for products built with AI.",
                 },
               ].map(({ name, platform, body }) => (
                 <div

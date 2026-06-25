@@ -18,13 +18,14 @@ const spotlightProducts = [
   },
 ];
 
-const secondaryProducts = [
+const secondaryLinked = [
   "AttriHub",
   "Planitics AI",
   "Product Slice HQ",
   "ProductVerseHQ",
-  "Resulo AI",
 ];
+
+const secondaryUnlinked = ["Resulo AI"];
 
 export function SaaSSection() {
   return (
@@ -95,7 +96,7 @@ export function SaaSSection() {
 
         {/* Secondary row */}
         <div className="flex flex-wrap gap-3 mb-12">
-          {secondaryProducts.map((name) => (
+          {secondaryLinked.map((name) => (
             <Link
               key={name}
               href="/portfolio"
@@ -108,6 +109,19 @@ export function SaaSSection() {
             >
               {name} &rarr;
             </Link>
+          ))}
+          {secondaryUnlinked.map((name) => (
+            <span
+              key={name}
+              className="rounded-full px-4 py-2 text-sm font-medium"
+              style={{
+                border: "1px solid hsl(210 35% 18%)",
+                color: "hsl(210 15% 40%)",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              {name}
+            </span>
           ))}
         </div>
 

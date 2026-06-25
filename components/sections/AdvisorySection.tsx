@@ -2,22 +2,22 @@ import Link from "next/link";
 
 const caseStudies = [
   {
-    name: "EasyCare",
+    name: "EzzyCare",
     tags: ["Product", "Technical", "Growth"],
     body: "Helping an established healthcare SaaS platform rebuild and expand into a full enterprise offering.",
-    href: "/services#advisory",
+    href: "/portfolio",
   },
   {
     name: "RentBook",
     tags: ["Product", "Technical"],
     body: "Building a first of its kind, end to end property rental platform from the ground up.",
-    href: "/services#advisory",
+    href: "/portfolio",
   },
   {
-    name: "FoodBridge",
+    name: "FoodBridgeNG",
     tags: ["Product", "Technical", "Growth"],
     body: "An agri tech platform connecting consumers directly to producers for fairer pricing.",
-    href: "/services#advisory",
+    href: "/portfolio",
   },
 ];
 

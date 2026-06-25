@@ -7,7 +7,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What does a startup advisory and consulting engagement with Rare Phronesis look like?",
     answer:
-      "It depends on your stage. For early founders, it is usually product and technical direction, helping you decide what to build first and how to set it up properly. For startups already in market, it can mean helping you build out a team, set strategy, and stay involved through execution, the way we work with EasyCare and RentBook. We see projects through from beginning to end.",
+      "It depends on your stage. For early founders, it is usually product and technical direction, helping you decide what to build first and how to set it up properly. For startups already in market, it can mean helping you build out a team, set strategy, and stay involved through execution, the way we work with EzzyCare and RentBook. We see projects through from beginning to end.",
   },
   {
     question: "Do I need a developer to handle my MVP?",

@@ -11,12 +11,12 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   // Advisory
   {
-    id: "easycare",
-    name: "EasyCare",
+    id: "ezzycare",
+    name: "EzzyCare",
     category: "advisory",
     tags: ["Product", "Technical", "Growth"],
     body: "Helping an established healthcare SaaS platform rebuild and expand into a full enterprise offering.",
-    url: undefined,
+    url: "https://ezzycare.com",
   },
   {
     id: "rentbook",
@@ -27,12 +27,12 @@ export const caseStudies: CaseStudy[] = [
     url: undefined,
   },
   {
-    id: "foodbridge",
-    name: "FoodBridge",
+    id: "foodbridgeng",
+    name: "FoodBridgeNG",
     category: "advisory",
     tags: ["Product", "Technical", "Growth"],
     body: "An agri tech platform connecting consumers directly to producers for fairer pricing.",
-    url: undefined,
+    url: "https://foodbridgeng.com",
   },
 
   // SaaS & Product
@@ -42,7 +42,7 @@ export const caseStudies: CaseStudy[] = [
     category: "saas",
     tags: ["Mobile and Web"],
     body: "A venture intelligence platform helping founders and startups validate, build, and scale their businesses.",
-    url: undefined,
+    url: "https://productnerve.com",
   },
   {
     id: "logpal-ai",
@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     category: "saas",
     tags: ["Web"],
     body: "Attribution and analytics platform for growth teams.",
-    url: undefined,
+    url: "https://attrihub.com",
   },
   {
     id: "planitics-ai",
@@ -130,13 +130,13 @@ export const caseStudies: CaseStudy[] = [
     url: "https://rejobosmcl.com",
   },
   {
-    id: "cozy-evans",
-    name: "Cozy Evans Cleaning Services",
+    id: "cozyhavens",
+    name: "Cozyhavens Cleaning Services",
     category: "websites",
-    tags: ["Cleaning Services"],
-    body: "Local professional cleaning services brand site built for trust and lead conversion.",
-    industry: "Cleaning Services",
-    url: undefined,
+    tags: ["Construction Cleaning and Home Management"],
+    body: "A company offering heavy duty and professional construction cleaning and home management services. We built their website and supported their digital setup.",
+    industry: "Construction Cleaning and Home Management",
+    url: "https://cosyhaven.com",
   },
 ];
 
