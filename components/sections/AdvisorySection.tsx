@@ -1,112 +1,110 @@
 import Link from "next/link";
-import { getCaseStudiesByCategory } from "@/lib/content/case-studies";
 
-const projects = getCaseStudiesByCategory("advisory");
-
-const pillarsDetail = [
-  { title: "Product Strategy", desc: "Market positioning, feature prioritisation, roadmap, user research — building the right thing." },
-  { title: "Technical Advisory", desc: "Architecture decisions, tech stack, build vs. buy, engineering hiring — building it right." },
-  { title: "Growth Advisory", desc: "Acquisition, retention, monetisation strategy — growing it sustainably." },
+const caseStudies = [
+  {
+    name: "EasyCare",
+    tags: ["Product", "Technical", "Growth"],
+    body: "Helping an established healthcare SaaS platform rebuild and expand into a full enterprise offering.",
+    href: "/services#advisory",
+  },
+  {
+    name: "RentBook",
+    tags: ["Product", "Technical"],
+    body: "Building a first of its kind, end to end property rental platform from the ground up.",
+    href: "/services#advisory",
+  },
+  {
+    name: "FoodBridge",
+    tags: ["Product", "Technical", "Growth"],
+    body: "An agri tech platform connecting consumers directly to producers for fairer pricing.",
+    href: "/services#advisory",
+  },
 ];
 
 export function AdvisorySection() {
   return (
     <section
       id="advisory"
-      style={{ padding: "clamp(4rem, 7vw, 8rem) 0", backgroundColor: "hsl(210 55% 12%)" }}
       aria-labelledby="advisory-heading"
+      style={{ padding: "clamp(4rem, 7vw, 8rem) 0" }}
     >
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
-        {/* Offset layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left col */}
+          {/* Left column */}
           <div>
-            <p
-              className="text-xs font-semibold mb-4 tracking-widest"
-              style={{ color: "hsl(45 100% 44%)", fontFamily: "var(--font-body)", textTransform: "uppercase" }}
-            >
-              Tier 1
-            </p>
             <h2
               id="advisory-heading"
               className="font-display font-bold mb-5"
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 color: "hsl(210 20% 92%)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.025em",
                 textWrap: "balance",
               }}
             >
-              Startup Advisory & Consulting
+              Startup Advisory and Consulting
             </h2>
             <p
-              className="mb-8"
-              style={{ color: "hsl(210 15% 58%)", fontFamily: "var(--font-body)", lineHeight: 1.75, maxWidth: "46ch" }}
+              className="mb-8 leading-relaxed"
+              style={{ color: "hsl(210 15% 58%)", fontFamily: "var(--font-body)", lineHeight: 1.75 }}
             >
-              Strategic clarity from someone who&apos;s built and grown products. We work alongside founders across three advisory pillars — not as generalists, but with a specific track record in each.
+              We work alongside founders as product, technical, and growth advisors. We don&apos;t just advise from the sidelines either. When needed, we help build out the team, set strategy, and stay with the project from start to finish.
             </p>
-
-            {/* Pillars */}
-            <div className="flex flex-col gap-5 mb-10">
-              {pillarsDetail.map(({ title, desc }) => (
-                <div key={title} className="flex gap-4">
-                  <div
-                    className="mt-1 w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ backgroundColor: "hsl(45 100% 44%)", marginTop: "0.45rem" }}
-                  />
-                  <div>
-                    <p className="font-display font-semibold text-sm mb-1" style={{ color: "hsl(210 20% 92%)" }}>{title}</p>
-                    <p className="text-sm" style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)", lineHeight: 1.65 }}>{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <Link
-              href="/work-with-us?tab=request&tier=advisory"
-              className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold transition-all duration-150 hover:brightness-110"
-              style={{ backgroundColor: "hsl(45 100% 44%)", color: "hsl(210 65% 10%)", fontFamily: "var(--font-body)" }}
+              href="/work-with-us"
+              className="rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-150 hover:brightness-110 inline-block"
+              style={{
+                backgroundColor: "hsl(45 100% 44%)",
+                color: "hsl(210 65% 10%)",
+                fontFamily: "var(--font-body)",
+              }}
             >
-              Get advisory support →
+              Work With Us
             </Link>
           </div>
 
-          {/* Right col — case studies */}
+          {/* Right column: case study cards */}
           <div className="flex flex-col gap-5">
-            <p
-              className="text-xs font-semibold tracking-widest mb-1"
-              style={{ color: "hsl(210 15% 45%)", fontFamily: "var(--font-body)", textTransform: "uppercase" }}
-            >
-              Advisory work
-            </p>
-            {projects.map((p) => (
+            {caseStudies.map(({ name, tags, body, href }) => (
               <div
-                key={p.id}
+                key={name}
                 className="rounded-xl p-6"
-                style={{ border: "1px solid hsl(210 35% 22%)", backgroundColor: "hsl(210 55% 10%)" }}
+                style={{
+                  backgroundColor: "hsl(210 45% 14%)",
+                  border: "1px solid hsl(210 35% 20%)",
+                }}
               >
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <p className="font-display font-semibold" style={{ color: "hsl(210 20% 92%)", fontSize: "1rem" }}>{p.name}</p>
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs shrink-0" style={{ color: "hsl(45 100% 44%)", fontFamily: "var(--font-body)" }}>Visit →</a>
-                  ) : (
-                    <span className="text-xs shrink-0" style={{ color: "hsl(210 15% 35%)", fontFamily: "var(--font-body)" }}>Link TBD</span>
-                  )}
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                      style={{
+                        backgroundColor: "hsl(210 35% 20%)",
+                        color: "hsl(210 20% 72%)",
+                        fontFamily: "var(--font-body)",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <p className="text-sm mb-3" style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)", lineHeight: 1.65 }}>{p.oneLiner}</p>
-                {p.pillars && (
-                  <div className="flex flex-wrap gap-2">
-                    {p.pillars.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md px-2.5 py-1 text-xs font-medium"
-                        style={{ backgroundColor: "hsl(45 100% 44% / 0.1)", color: "hsl(45 100% 50%)", fontFamily: "var(--font-body)" }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <p
+                  className="font-display font-semibold mb-2"
+                  style={{ color: "hsl(210 20% 92%)", fontSize: "1rem" }}
+                >
+                  {name}
+                </p>
+                <p className="text-sm mb-4" style={{ color: "hsl(210 15% 58%)", fontFamily: "var(--font-body)", lineHeight: 1.6 }}>
+                  {body}
+                </p>
+                <Link
+                  href={href}
+                  className="text-xs font-semibold transition-colors duration-150 hover:opacity-80"
+                  style={{ color: "hsl(45 100% 44%)", fontFamily: "var(--font-body)" }}
+                >
+                  Learn more &rarr;
+                </Link>
               </div>
             ))}
           </div>

@@ -94,11 +94,11 @@ export default function PortfolioPage() {
                       className="text-sm flex-1 mb-4"
                       style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)", lineHeight: 1.65 }}
                     >
-                      {p.oneLiner}
+                      {p.body}
                     </p>
-                    {p.pillars && (
+                    {p.tags && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
-                        {p.pillars.map((tag) => (
+                        {p.tags.map((tag) => (
                           <span
                             key={tag}
                             className="rounded px-2 py-0.5 text-xs"

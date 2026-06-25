@@ -1,0 +1,248 @@
+"use client";
+
+import { useState } from "react";
+
+type Status = "idle" | "sending" | "success" | "error";
+
+const SERVICE_OPTIONS = [
+  "Startup Advisory and Consulting",
+  "SaaS and Product Development",
+  "Business Website Development",
+  "Digital Business Setup (Add-on)",
+  "Growth Services (Add-on)",
+  "Paid and Performance Advertising (Add-on)",
+  "Growth Advisory (Add-on)",
+  "Team Training (Add-on)",
+];
+
+const inputStyle = {
+  backgroundColor: "hsl(210 35% 18%)",
+  border: "1px solid hsl(210 35% 22%)",
+  color: "hsl(210 20% 92%)",
+  fontFamily: "var(--font-body)",
+  borderRadius: "0.5rem",
+  padding: "0.75rem 1rem",
+  width: "100%",
+  fontSize: "0.875rem",
+  outline: "none",
+} as const;
+
+const labelStyle = {
+  color: "hsl(210 15% 55%)",
+  fontFamily: "var(--font-body)",
+  fontSize: "0.75rem",
+  fontWeight: 600,
+} as const;
+
+function SuccessMessage() {
+  return (
+    <div
+      className="rounded-xl p-8 text-center"
+      style={{ backgroundColor: "hsl(210 45% 16%)", border: "1px solid hsl(210 35% 22%)" }}
+    >
+      <p className="font-display font-semibold mb-2" style={{ color: "hsl(210 20% 92%)" }}>
+        Submission received
+      </p>
+      <p className="text-sm" style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)" }}>
+        We will review your brief and get back to you within 1 to 2 business days to discuss next steps.
+      </p>
+    </div>
+  );
+}
+
+function BriefForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm] = useState({
+    businessName: "",
+    contactName: "",
+    location: "",
+    targetMarket: "",
+    idealCustomer: "",
+    currentChallenge: "",
+    goal: "",
+    notes: "",
+    email: "",
+  });
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "brief",
+          name: form.contactName,
+          email: form.email,
+          "Business Name": form.businessName,
+          "Contact Name": form.contactName,
+          "Where the Business Operates": form.location,
+          "Target Market": form.targetMarket,
+          "Ideal Customer": form.idealCustomer,
+          "Current Challenge": form.currentChallenge,
+          "Goal": form.goal,
+          "Additional Notes": form.notes,
+        }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") return <SuccessMessage />;
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="Business Name">
+          <input type="text" required placeholder="Your business name" style={inputStyle}
+            value={form.businessName} onChange={(e) => setForm((f) => ({ ...f, businessName: e.target.value }))} />
+        </Field>
+        <Field label="Your Name">
+          <input type="text" required placeholder="Business owner or contact" style={inputStyle}
+            value={form.contactName} onChange={(e) => setForm((f) => ({ ...f, contactName: e.target.value }))} />
+        </Field>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="Where the Business Operates">
+          <input type="text" required placeholder="Country, region, or global" style={inputStyle}
+            value={form.location} onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))} />
+        </Field>
+        <Field label="Target Market">
+          <input type="text" required placeholder="Who you serve or want to serve" style={inputStyle}
+            value={form.targetMarket} onChange={(e) => setForm((f) => ({ ...f, targetMarket: e.target.value }))} />
+        </Field>
+      </div>
+      <Field label="Ideal Customer Profile">
+        <textarea rows={3} required placeholder="Describe your ideal user or customer" style={{ ...inputStyle, resize: "vertical" }}
+          value={form.idealCustomer} onChange={(e) => setForm((f) => ({ ...f, idealCustomer: e.target.value }))} />
+      </Field>
+      <Field label="Current Challenge">
+        <textarea rows={3} required placeholder="What is the main problem you are solving?" style={{ ...inputStyle, resize: "vertical" }}
+          value={form.currentChallenge} onChange={(e) => setForm((f) => ({ ...f, currentChallenge: e.target.value }))} />
+      </Field>
+      <Field label="What You Want to Achieve">
+        <textarea rows={3} required placeholder="What does success look like for this project?" style={{ ...inputStyle, resize: "vertical" }}
+          value={form.goal} onChange={(e) => setForm((f) => ({ ...f, goal: e.target.value }))} />
+      </Field>
+      <Field label="Additional Notes (optional)">
+        <textarea rows={3} placeholder="Anything else we should know?" style={{ ...inputStyle, resize: "vertical" }}
+          value={form.notes} onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))} />
+      </Field>
+      <Field label="Your Email">
+        <input type="email" required placeholder="your@email.com" style={inputStyle}
+          value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+      </Field>
+      <ErrorNote status={status} />
+      <SubmitButton status={status} label="Submit Brief" />
+    </form>
+  );
+}
+
+function QuoteForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    goal: "",
+    timeline: "",
+  });
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "quote",
+          name: form.name,
+          email: form.email,
+          "Service": form.service,
+          "Goal": form.goal,
+          "Expected Timeline": form.timeline,
+        }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") return <SuccessMessage />;
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <Field label="Select a Service">
+        <select
+          required
+          style={{ ...inputStyle, appearance: "none" as const }}
+          value={form.service}
+          onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
+        >
+          <option value="">Choose a service</option>
+          {SERVICE_OPTIONS.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+      </Field>
+      <Field label="What Do You Want to Achieve?">
+        <textarea rows={4} required placeholder="Describe your goal for this service" style={{ ...inputStyle, resize: "vertical" }}
+          value={form.goal} onChange={(e) => setForm((f) => ({ ...f, goal: e.target.value }))} />
+      </Field>
+      <Field label="Expected Duration or Timeline">
+        <input type="text" required placeholder="e.g. 6 to 8 weeks, ASAP, Q3 launch" style={inputStyle}
+          value={form.timeline} onChange={(e) => setForm((f) => ({ ...f, timeline: e.target.value }))} />
+      </Field>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="Your Name">
+          <input type="text" required placeholder="Full name" style={inputStyle}
+            value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
+        </Field>
+        <Field label="Your Email">
+          <input type="email" required placeholder="your@email.com" style={inputStyle}
+            value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+        </Field>
+      </div>
+      <ErrorNote status={status} />
+      <SubmitButton status={status} label="Get a Quote" />
+    </form>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label style={labelStyle}>{label}</label>
+      {children}
+    </div>
+  );
+}
+
+function ErrorNote({ status }: { status: Status }) {
+  if (status !== "error") return null;
+  return (
+    <p className="text-sm" style={{ color: "hsl(0 70% 60%)", fontFamily: "var(--font-body)" }}>
+      Something went wrong. Please try again or email us at hello@rarephronesis.com.
+    </p>
+  );
+}
+
+function SubmitButton({ status, label }: { status: Status; label: string }) {
+  return (
+    <button
+      type="submit"
+      disabled={status === "sending"}
+      className="rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-150 hover:brightness-110 disabled:opacity-60 self-start"
+      style={{ backgroundColor: "hsl(45 100% 44%)", color: "hsl(210 65% 10%)", fontFamily: "var(--font-body)" }}
+    >
+      {status === "sending" ? "Sending..." : label}
+    </button>
+  );
+}
+
+export { BriefForm, QuoteForm };

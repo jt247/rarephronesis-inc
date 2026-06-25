@@ -2,114 +2,141 @@ export type CaseStudy = {
   id: string;
   name: string;
   category: "advisory" | "saas" | "websites";
-  oneLiner: string;
-  pillars?: string[];
-  outcome?: string;
+  tags: string[];
+  body: string;
+  url?: string;
   industry?: string;
-  url?: string; // PLACEHOLDER — to be provided by Joshua
 };
 
 export const caseStudies: CaseStudy[] = [
-  // ── Advisory ──────────────────────────────────────────────────
+  // Advisory
   {
     id: "easycare",
     name: "EasyCare",
     category: "advisory",
-    oneLiner: "Healthcare platform advisory across product, technical, and growth.",
-    pillars: ["Product Strategy", "Technical Advisory", "Growth Advisory"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Product", "Technical", "Growth"],
+    body: "Helping an established healthcare SaaS platform rebuild and expand into a full enterprise offering.",
+    url: undefined,
   },
   {
     id: "rentbook",
     name: "RentBook",
     category: "advisory",
-    oneLiner: "Property rental product advisory — from concept to market-ready.",
-    pillars: ["Product Strategy", "Technical Advisory"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Product", "Technical"],
+    body: "Building a first of its kind, end to end property rental platform from the ground up.",
+    url: undefined,
   },
   {
     id: "foodbridge",
     name: "FoodBridge",
     category: "advisory",
-    oneLiner: "Food-tech advisory covering product, technical, and growth strategy.",
-    pillars: ["Product Strategy", "Technical Advisory", "Growth Advisory"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Product", "Technical", "Growth"],
+    body: "An agri tech platform connecting consumers directly to producers for fairer pricing.",
+    url: undefined,
   },
 
-  // ── SaaS & Product ────────────────────────────────────────────
-  {
-    id: "logpal-ai",
-    name: "LogPal AI",
-    category: "saas",
-    oneLiner: "AI-powered mobile logging app — designed and built end-to-end.",
-    pillars: ["Mobile App", "AI Integration"],
-    url: undefined, // PLACEHOLDER
-  },
+  // SaaS & Product
   {
     id: "product-nerve-ai",
     name: "Product Nerve AI",
     category: "saas",
-    oneLiner: "AI product intelligence platform — mobile and web.",
-    pillars: ["Mobile App", "Web App", "AI Integration"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Mobile and Web"],
+    body: "A venture intelligence platform helping founders and startups validate, build, and scale their businesses.",
+    url: undefined,
   },
   {
-    id: "referlytics",
-    name: "Referlytics",
+    id: "logpal-ai",
+    name: "LogPal AI",
     category: "saas",
-    oneLiner: "Referral analytics platform — mobile and web.",
-    pillars: ["Mobile App", "Web App"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Mobile"],
+    body: "A personal productivity companion that captures meetings by voice, online or offline, and turns them into summaries and reports automatically.",
+    url: undefined,
   },
   {
-    id: "productverse-hq",
-    name: "ProductVerseHQ",
+    id: "bizpulse",
+    name: "BizPulse",
     category: "saas",
-    oneLiner: "Product community and knowledge platform.",
-    pillars: ["Web App"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Mobile"],
+    body: "An AI business diagnostics tool giving small businesses a regular health check before small problems become big ones.",
+    url: undefined,
+  },
+  {
+    id: "attribub",
+    name: "AttriHub",
+    category: "saas",
+    tags: ["Web"],
+    body: "Attribution and analytics platform for growth teams.",
+    url: undefined,
+  },
+  {
+    id: "planitics-ai",
+    name: "Planitics AI",
+    category: "saas",
+    tags: ["Mobile and Web"],
+    body: "AI planning and execution platform for startups.",
+    url: undefined,
   },
   {
     id: "product-slice-hq",
     name: "Product Slice HQ",
     category: "saas",
-    oneLiner: "Product thinking publication and writing platform.",
-    pillars: ["Web App"],
-    url: undefined, // PLACEHOLDER
+    tags: ["Web"],
+    body: "Product thinking publication and writing platform.",
+    url: undefined,
+  },
+  {
+    id: "productverse-hq",
+    name: "ProductVerseHQ",
+    category: "saas",
+    tags: ["Web"],
+    body: "Product community and knowledge platform.",
+    url: undefined,
+  },
+  {
+    id: "resulo-ai",
+    name: "Resulo AI",
+    category: "saas",
+    tags: ["Mobile and Web"],
+    body: "Referral and growth intelligence platform.",
+    url: undefined,
   },
 
-  // ── Business Websites ─────────────────────────────────────────
+  // Business Websites
   {
     id: "orabel-homes",
-    name: "Orabel Homes & Properties",
+    name: "Orabel Homes and Properties",
     category: "websites",
-    oneLiner: "Real estate brand website built for credibility and lead generation.",
+    tags: ["Real Estate"],
+    body: "A property rental, sales, and leasing company. We built their website and led a full digital setup.",
     industry: "Real Estate",
-    url: undefined, // PLACEHOLDER
+    url: "https://orabelhomeproperties.com",
   },
   {
     id: "tianah-logistics",
     name: "Tianah Global Logistics",
     category: "websites",
-    oneLiner: "Logistics company brand site — professional and conversion-focused.",
+    tags: ["Logistics"],
+    body: "Moving goods between Nigeria, Canada, the UK, and beyond. We designed their site and digital infrastructure.",
     industry: "Logistics",
-    url: undefined, // PLACEHOLDER
+    url: "https://tianahglobalhq.com",
   },
   {
-    id: "rijobos",
-    name: "Rijobos Multi Concept",
+    id: "rejobos",
+    name: "Rejobos Multi Concept Limited",
     category: "websites",
-    oneLiner: "Travel and hospitality brand website.",
-    industry: "Travel",
-    url: undefined, // PLACEHOLDER
+    tags: ["Travel and Visa Services"],
+    body: "Visa processing for individuals and corporate clients. We built their site and supported their full digital setup.",
+    industry: "Travel and Visa Services",
+    url: "https://rejobosmcl.com",
   },
   {
     id: "cozy-evans",
     name: "Cozy Evans Cleaning Services",
     category: "websites",
-    oneLiner: "Cleaning services brand site — local, professional, trust-first.",
+    tags: ["Cleaning Services"],
+    body: "Local professional cleaning services brand site built for trust and lead conversion.",
     industry: "Cleaning Services",
-    url: undefined, // PLACEHOLDER
+    url: undefined,
   },
 ];
 

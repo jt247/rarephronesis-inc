@@ -5,43 +5,33 @@ export type FAQItem = {
 
 export const faqItems: FAQItem[] = [
   {
-    question: "What does Rare Phronesis actually do?",
+    question: "What does a startup advisory and consulting engagement with Rare Phronesis look like?",
     answer:
-      "We're a product, technical, and growth partner for startups and founders. That means we advise on strategy, build SaaS products and mobile apps, and develop professional business websites — depending on what a founder needs at their stage.",
+      "It depends on your stage. For early founders, it is usually product and technical direction, helping you decide what to build first and how to set it up properly. For startups already in market, it can mean helping you build out a team, set strategy, and stay involved through execution, the way we work with EasyCare and RentBook. We see projects through from beginning to end.",
   },
   {
-    question: "What's the difference between startup advisory and product development?",
+    question: "Do I need a developer to handle my MVP?",
     answer:
-      "Advisory is strategic — we help you make the right decisions around product, technology, and growth without necessarily building it ourselves. Product development is hands-on — we design and build the actual product. Many clients start with advisory and move into a build engagement.",
+      "This is exactly where we thrive. AI assisted development and rapid prototyping let us validate an idea quickly, often without needing a full technical team in place from day one.",
   },
   {
-    question: "Do you work with early-stage startups or only funded companies?",
+    question: "What is the difference between hiring a freelance developer and working with Rare Phronesis?",
     answer:
-      "Both. We work with pre-revenue founders validating ideas, early-stage startups building their first product, and funded teams scaling to their next milestone. Our engagement model adapts to the stage.",
+      "A freelance developer builds what you ask for. We help you figure out what to build in the first place, then build it properly, with product strategy and growth thinking built in.",
   },
   {
-    question: "Can you act as a fractional CTO or technical co-founder?",
+    question: "Can you help with just the technical side, or just the growth side?",
     answer:
-      "Yes — our Startup Advisory & Consulting tier covers exactly this. If you need technical leadership, architectural guidance, or a credible technical voice without a full-time hire, that's a fit for our advisory engagement.",
+      "Whatever you need, we are there for you. We can execute on both ends, and we have the people to do it.",
   },
   {
-    question: "How long does it take to build a SaaS product or mobile app?",
+    question: "Do you work with startups or established businesses?",
     answer:
-      "A focused MVP is typically 6–12 weeks depending on scope. We use an AI-assisted build process that compresses timelines without cutting corners on quality. We'll scope your project specifically after an initial conversation.",
+      "Both. We work with everybody. Bring the project, and we hit the ground running.",
   },
   {
-    question: "Do you only work with Nigerian or African startups?",
+    question: "How fast can you build an MVP?",
     answer:
-      "No — we work with founders and startups globally. Our client base spans Nigeria, the UK, the US, and other markets. Timezone-friendly async communication is our default.",
-  },
-  {
-    question: "What's included in a business website development project?",
-    answer:
-      "A professional marketing and brand website designed to represent your business credibly and move visitors toward action. Projects typically include design, development, basic SEO setup, and optional ongoing care. We also offer Digital Business Setup as an add-on (analytics, custom email, domain, social infrastructure).",
-  },
-  {
-    question: "How do I get started?",
-    answer:
-      "Fill out the contact form — tell us what you need, your timeline, and a rough budget range if you have one. We'll review and reach out within 1–2 business days to discuss next steps.",
+      "It depends on scope, but our own products are typically built and shipped in weeks, using the same AI assisted approach we bring to client work when speed matters most.",
   },
 ];

@@ -1,110 +1,87 @@
 import Link from "next/link";
-import { Lightbulb, Code2, Globe } from "lucide-react";
 
-const tiers = [
+const ways = [
   {
-    icon: Lightbulb,
-    id: "advisory",
-    title: "Startup Advisory & Consulting",
-    description: "Product strategy, technical advisory, and growth advisory for founders who need a sharp, experienced partner in their corner.",
-    anchor: "#advisory",
-    contactHref: "/work-with-us?tab=request&tier=advisory",
+    title: "Startup Advisory and Consulting",
+    body: "Strategic and technical guidance for founders building something new. We help you set direction, build a team around the work if needed, and see the project through from strategy to execution.",
+    linkLabel: "Explore Advisory",
+    href: "#advisory",
   },
   {
-    icon: Code2,
-    id: "saas",
-    title: "SaaS & Product Development",
-    description: "We design and build the product — web, mobile, or both. MVP to scale, using an AI-assisted build process that compresses timelines.",
-    anchor: "#saas",
-    contactHref: "/work-with-us?tab=request&tier=saas",
+    title: "SaaS and Product Development",
+    body: "We design and build the actual product ourselves, web, mobile, or both, from first MVP to platforms ready for scale.",
+    linkLabel: "Explore Product Development",
+    href: "#saas",
   },
   {
-    icon: Globe,
-    id: "websites",
     title: "Business Website Development",
-    description: "Professional marketing and brand websites that represent your business credibly and move visitors toward action.",
-    anchor: "#websites",
-    contactHref: "/work-with-us?tab=request&tier=websites",
+    body: "Professional, conversion ready websites for businesses that need a strong digital front door, built right, not templated.",
+    linkLabel: "Explore Website Development",
+    href: "#websites",
   },
 ];
 
 export function ThreeWaysSection() {
   return (
     <section
-      className="relative"
+      aria-labelledby="how-we-work-heading"
       style={{ padding: "clamp(4rem, 7vw, 8rem) 0" }}
-      aria-labelledby="three-ways-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
-        <div className="mb-14 max-w-xl">
+        <div className="mb-12">
           <h2
-            id="three-ways-heading"
+            id="how-we-work-heading"
             className="font-display font-bold mb-4"
             style={{
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
               color: "hsl(210 20% 92%)",
-              textWrap: "balance",
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.025em",
             }}
           >
-            Three ways we work with you
+            How We Work With You
           </h2>
           <p
-            className="text-base"
-            style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)", lineHeight: 1.7 }}
+            style={{
+              color: "hsl(210 15% 58%)",
+              fontFamily: "var(--font-body)",
+              lineHeight: 1.75,
+              maxWidth: "55ch",
+            }}
           >
-            Advisory signals credibility. Build work proves capability. Websites are the accessible entry. A visitor self-sorts within one scroll.
+            Whatever stage you are at, validating an idea, building the product, or getting your business online, we meet you there.
           </p>
         </div>
 
-        {/* Asymmetric grid — tiers offset */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
-          {tiers.map(({ icon: Icon, id, title, description, anchor, contactHref }, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {ways.map(({ title, body, linkLabel, href }, i) => (
             <div
-              key={id}
-              className="relative flex flex-col p-8 md:p-10"
+              key={title}
+              className="rounded-2xl p-8 flex flex-col"
               style={{
-                backgroundColor: i === 1 ? "hsl(210 55% 14%)" : "transparent",
-                border: i === 1 ? "1px solid hsl(45 100% 44% / 0.2)" : "1px solid hsl(210 35% 20%)",
-                borderRadius: "var(--radius)",
-                marginTop: i === 1 ? "-1.5rem" : 0,
-                marginBottom: i === 1 ? "-1.5rem" : 0,
+                backgroundColor: "hsl(210 45% 14%)",
+                border: i === 1 ? "1px solid hsl(45 100% 44% / 0.4)" : "1px solid hsl(210 35% 20%)",
+                marginTop: i === 1 ? "1.5rem" : "0",
               }}
             >
-              <div
-                className="mb-5 w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: "hsl(45 100% 44% / 0.12)" }}
-              >
-                <Icon size={20} style={{ color: "hsl(45 100% 44%)" }} />
-              </div>
               <h3
                 className="font-display font-semibold mb-3"
-                style={{ fontSize: "1.1rem", color: "hsl(210 20% 92%)", letterSpacing: "-0.01em" }}
+                style={{ fontSize: "1.1rem", color: "hsl(210 20% 92%)" }}
               >
                 {title}
               </h3>
               <p
-                className="text-sm flex-1 mb-6"
-                style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)", lineHeight: 1.7 }}
+                className="text-sm leading-relaxed flex-1 mb-6"
+                style={{ color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)" }}
               >
-                {description}
+                {body}
               </p>
-              <div className="flex flex-col gap-2">
-                <Link
-                  href={anchor}
-                  className="text-sm font-medium transition-colors duration-150 hover:opacity-80"
-                  style={{ color: "hsl(45 100% 44%)", fontFamily: "var(--font-body)" }}
-                >
-                  Learn more →
-                </Link>
-                <Link
-                  href={contactHref}
-                  className="text-xs transition-colors duration-150"
-                  style={{ color: "hsl(210 15% 45%)", fontFamily: "var(--font-body)" }}
-                >
-                  Get started with this →
-                </Link>
-              </div>
+              <a
+                href={href}
+                className="text-sm font-semibold transition-colors duration-150 hover:opacity-80 self-start"
+                style={{ color: "hsl(45 100% 44%)", fontFamily: "var(--font-body)" }}
+              >
+                {linkLabel} &darr;
+              </a>
             </div>
           ))}
         </div>

@@ -9,16 +9,34 @@ import { AddOnsSection } from "@/components/sections/AddOnsSection";
 import { WhySection } from "@/components/sections/WhySection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { faqItems } from "@/lib/content/faq";
 
 export const metadata: Metadata = {
-  title: "Rare Phronesis — Product, Technical & Growth Partner for Startups",
+  title: "Rare Phronesis | Product, Technical and Growth Partner for Startups",
   description:
-    "Rare Phronesis is a product, technical, and growth partner for startups and founders — we advise, build, and grow the systems that take an idea to a working business.",
+    "Rare Phronesis helps startups and businesses validate, build, and scale through startup advisory, SaaS and product development, and professional website development. Work with us.",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
 };
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <HeroSection />
       <TrustStrip />
       <ThreeWaysSection />
