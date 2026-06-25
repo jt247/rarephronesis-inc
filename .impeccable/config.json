@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "reason": "Existing brand font carried forward from rarephronesis.com — client-locked, not AI default",
+        "createdAt": "2026-06-25T02:11:54.856Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "reason": "Existing brand font carried forward from rarephronesis.com — client-locked, not AI default",
+        "createdAt": "2026-06-25T02:11:54.924Z"
+      }
+    ]
+  }
+}

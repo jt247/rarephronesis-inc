@@ -1,26 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Core palette ── */
+  --background: 210 65% 10%;
+  --foreground: 210 20% 92%;
+
+  --card: 210 55% 14%;
+  --card-foreground: 210 20% 92%;
+
+  --primary: 45 100% 44%;
+  --primary-foreground: 210 65% 10%;
+
+  --secondary: 210 45% 16%;
+  --secondary-foreground: 210 20% 92%;
+
+  --muted: 210 35% 18%;
+  --muted-foreground: 210 15% 55%;
+
+  --accent: 45 100% 44%;
+  --accent-foreground: 210 65% 10%;
+
+  --destructive: 0 84% 60%;
+
+  --border: 210 35% 20%;
+  --input: 210 35% 20%;
+  --ring: 45 100% 44%;
+
+  /* ── Surface layers ── */
+  --surface: 210 55% 12%;
+  --surface-elevated: 210 50% 15%;
+
+  /* ── Glow ── */
+  --glow: 45 100% 44%;
+  --glow-muted: 45 60% 35%;
+
+  /* ── Shape ── */
+  --radius: 0.75rem;
+
+  /* ── Typography ── */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-surface: hsl(var(--surface));
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-glow: hsl(var(--glow));
+  --color-glow-muted: hsl(var(--glow-muted));
+
+  --font-family-display: var(--font-display);
+  --font-family-body: var(--font-body);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+}
+
+/* ── Utilities ── */
+.glow-box {
+  box-shadow: 0 0 40px -10px hsl(45 100% 44% / 0.3);
+}
+
+.glow-border {
+  border: 1px solid hsl(45 100% 44% / 0.15);
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(45 100% 44% / 0.2), transparent);
+}
+
+/* ── Animations ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.animate-fade-up { animation: fade-up 0.6s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+.animate-float   { animation: float 6s ease-in-out infinite; }
