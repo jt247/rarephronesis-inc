@@ -141,6 +141,87 @@ function BriefForm() {
   );
 }
 
+function ServiceDropdown({ selected, onToggle }: { selected: string[]; onToggle: (s: string) => void }) {
+  const [open, setOpen] = useState(false);
+
+  const label =
+    selected.length === 0
+      ? "Choose services"
+      : selected.length === 1
+      ? selected[0]
+      : `${selected.length} services selected`;
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center justify-between w-full text-left"
+        style={{
+          ...inputStyle,
+          color: selected.length === 0 ? "hsl(210 15% 40%)" : "hsl(210 20% 92%)",
+        }}
+      >
+        <span className="truncate pr-2">{label}</span>
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          style={{ flexShrink: 0, transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms" }}
+        >
+          <path d="M2 4L6 8L10 4" stroke="hsl(210 15% 50%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          className="absolute z-10 w-full mt-1 rounded-lg overflow-hidden"
+          style={{
+            backgroundColor: "hsl(210 45% 14%)",
+            border: "1px solid hsl(210 35% 22%)",
+            boxShadow: "0 8px 24px hsl(210 65% 5% / 0.6)",
+          }}
+        >
+          {SERVICE_OPTIONS.map((option) => {
+            const checked = selected.includes(option);
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => onToggle(option)}
+                className="flex items-center gap-3 w-full text-left px-4 py-3 transition-colors duration-100"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.875rem",
+                  color: checked ? "hsl(210 20% 92%)" : "hsl(210 15% 62%)",
+                  backgroundColor: checked ? "hsl(210 40% 18%)" : "transparent",
+                  borderBottom: "1px solid hsl(210 35% 18%)",
+                }}
+              >
+                <span
+                  className="flex-shrink-0 w-4 h-4 rounded flex items-center justify-center"
+                  style={{
+                    backgroundColor: checked ? "hsl(45 100% 44%)" : "transparent",
+                    border: `1.5px solid ${checked ? "hsl(45 100% 44%)" : "hsl(210 35% 35%)"}`,
+                  }}
+                >
+                  {checked && (
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="hsl(210 65% 10%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </span>
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [services, setServices] = useState<string[]>([]);
@@ -184,46 +265,8 @@ function QuoteForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <Field label="Services Needed (select all that apply)">
-        <div className="flex flex-col gap-2 mt-1">
-          {SERVICE_OPTIONS.map((option) => {
-            const checked = services.includes(option);
-            return (
-              <label
-                key={option}
-                className="flex items-center gap-3 cursor-pointer rounded-lg px-4 py-3 transition-colors duration-150"
-                style={{
-                  backgroundColor: checked ? "hsl(210 45% 20%)" : "hsl(210 35% 18%)",
-                  border: `1px solid ${checked ? "hsl(45 100% 44%)" : "hsl(210 35% 22%)"}`,
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.875rem",
-                  color: checked ? "hsl(210 20% 92%)" : "hsl(210 15% 62%)",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  onChange={() => toggleService(option)}
-                  className="sr-only"
-                />
-                <span
-                  className="flex-shrink-0 w-4 h-4 rounded flex items-center justify-center"
-                  style={{
-                    backgroundColor: checked ? "hsl(45 100% 44%)" : "transparent",
-                    border: `1.5px solid ${checked ? "hsl(45 100% 44%)" : "hsl(210 35% 35%)"}`,
-                  }}
-                >
-                  {checked && (
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="hsl(210 65% 10%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </span>
-                {option}
-              </label>
-            );
-          })}
-        </div>
+      <Field label="Select Services (choose all that apply)">
+        <ServiceDropdown selected={services} onToggle={toggleService} />
         {services.length === 0 && (
           <p className="text-xs mt-1" style={{ color: "hsl(210 15% 45%)", fontFamily: "var(--font-body)" }}>
             Select at least one service to continue.
