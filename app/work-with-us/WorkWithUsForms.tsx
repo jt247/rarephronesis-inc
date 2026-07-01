@@ -143,16 +143,23 @@ function BriefForm() {
 
 function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [services, setServices] = useState<string[]>([]);
   const [form, setForm] = useState({
     name: "",
     email: "",
-    service: "",
     goal: "",
     timeline: "",
   });
 
+  function toggleService(service: string) {
+    setServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+    );
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (services.length === 0) return;
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
@@ -162,7 +169,7 @@ function QuoteForm() {
           type: "quote",
           name: form.name,
           email: form.email,
-          "Service": form.service,
+          "Services": services.join(", "),
           "Goal": form.goal,
           "Expected Timeline": form.timeline,
         }),
@@ -177,18 +184,51 @@ function QuoteForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <Field label="Select a Service">
-        <select
-          required
-          style={{ ...inputStyle, appearance: "none" as const }}
-          value={form.service}
-          onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
-        >
-          <option value="">Choose a service</option>
-          {SERVICE_OPTIONS.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
+      <Field label="Services Needed (select all that apply)">
+        <div className="flex flex-col gap-2 mt-1">
+          {SERVICE_OPTIONS.map((option) => {
+            const checked = services.includes(option);
+            return (
+              <label
+                key={option}
+                className="flex items-center gap-3 cursor-pointer rounded-lg px-4 py-3 transition-colors duration-150"
+                style={{
+                  backgroundColor: checked ? "hsl(210 45% 20%)" : "hsl(210 35% 18%)",
+                  border: `1px solid ${checked ? "hsl(45 100% 44%)" : "hsl(210 35% 22%)"}`,
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.875rem",
+                  color: checked ? "hsl(210 20% 92%)" : "hsl(210 15% 62%)",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  onChange={() => toggleService(option)}
+                  className="sr-only"
+                />
+                <span
+                  className="flex-shrink-0 w-4 h-4 rounded flex items-center justify-center"
+                  style={{
+                    backgroundColor: checked ? "hsl(45 100% 44%)" : "transparent",
+                    border: `1.5px solid ${checked ? "hsl(45 100% 44%)" : "hsl(210 35% 35%)"}`,
+                  }}
+                >
+                  {checked && (
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="hsl(210 65% 10%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </span>
+                {option}
+              </label>
+            );
+          })}
+        </div>
+        {services.length === 0 && (
+          <p className="text-xs mt-1" style={{ color: "hsl(210 15% 45%)", fontFamily: "var(--font-body)" }}>
+            Select at least one service to continue.
+          </p>
+        )}
       </Field>
       <Field label="What Do You Want to Achieve?">
         <textarea rows={4} required placeholder="Describe your goal for this service" style={{ ...inputStyle, resize: "vertical" }}

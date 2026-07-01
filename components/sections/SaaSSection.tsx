@@ -25,8 +25,6 @@ const secondaryLinked = [
   "ProductVerseHQ",
 ];
 
-const secondaryUnlinked = ["Resulo AI"];
-
 export function SaaSSection() {
   return (
     <section
@@ -109,19 +107,6 @@ export function SaaSSection() {
             >
               {name} &rarr;
             </Link>
-          ))}
-          {secondaryUnlinked.map((name) => (
-            <span
-              key={name}
-              className="rounded-full px-4 py-2 text-sm font-medium"
-              style={{
-                border: "1px solid hsl(210 35% 18%)",
-                color: "hsl(210 15% 40%)",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              {name}
-            </span>
           ))}
         </div>
 

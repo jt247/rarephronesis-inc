@@ -92,15 +92,6 @@ export const caseStudies: CaseStudy[] = [
     body: "Product community and knowledge platform.",
     url: undefined,
   },
-  {
-    id: "resulo-ai",
-    name: "Resulo AI",
-    category: "saas",
-    tags: ["Mobile and Web"],
-    body: "Referral and growth intelligence platform.",
-    url: undefined,
-  },
-
   // Business Websites
   {
     id: "orabel-homes",

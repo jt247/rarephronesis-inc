@@ -26,7 +26,7 @@ export default function CookiePolicyPage() {
           </Section>
 
           <Section title="2. How we use cookies">
-            We use cookies minimally and only where necessary. We do not use advertising cookies, behavioural tracking cookies, or third-party marketing cookies.
+            We use cookies for analytics and marketing purposes only. Specifically, we use Meta Pixel, Google Analytics 4, and PostHog to understand how visitors use our site and to measure the performance of our marketing. We do not use cookies for any other purpose, and we do not share your data with any other third parties.
           </Section>
 
           <Section title="3. Types of cookies we use">
@@ -47,7 +47,7 @@ export default function CookiePolicyPage() {
               <tbody>
                 {[
                   ["Essential", "Required for the site to function correctly (e.g. form security).", "Session"],
-                  ["Analytics (anonymised)", "Understand how visitors use the site — no personally identifiable data. [PLACEHOLDER — confirm analytics tool before go-live]", "Up to 2 years"],
+                  ["Analytics and Marketing", "Meta Pixel, Google Analytics 4, and PostHog. Used to understand how visitors use the site and measure marketing performance. No data is shared with any other third parties.", "Up to 2 years"],
                 ].map(([type, purpose, duration]) => (
                   <tr key={type} style={{ borderBottom: "1px solid hsl(210 35% 18%)" }}>
                     <td className="py-3 pr-4 font-medium" style={{ color: "hsl(210 20% 76%)" }}>{type}</td>

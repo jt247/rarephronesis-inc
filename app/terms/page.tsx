@@ -46,8 +46,7 @@ export default function TermsPage() {
           </Section>
 
           <Section title="7. Governing law">
-            {/* PLACEHOLDER: Confirm governing jurisdiction before go-live */}
-            These terms are governed by applicable law. [PLACEHOLDER — confirm jurisdiction with Joshua before go-live.]
+            These terms are governed by the laws of Lagos, Nigeria. Any disputes arising from your use of this website or these Terms will be subject to the exclusive jurisdiction of the courts of Lagos, Nigeria.
           </Section>
 
           <Section title="8. Changes">
