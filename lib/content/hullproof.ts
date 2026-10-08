@@ -21,7 +21,7 @@ export const hero = {
   primary: "Get Hullproof Pro",
   secondary: "Start with the free edition",
   priceLine: "16.50 USD, taxes included. One time purchase. Delivered as a zip.",
-  launchLine: "The first 500 buyers pay 13.25 USD with the code FIRST500.",
+  launchLine: "The first 500 buyers get 15% off with the code FIRST500.",
 };
 
 export const problem = {

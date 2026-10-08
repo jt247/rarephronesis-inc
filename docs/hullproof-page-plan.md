@@ -31,7 +31,7 @@ Same navy and gold tokens, Plus Jakarta Sans and Inter, section rhythm and conta
 
 1. Support email to show. Default is GitHub issues only.
 2. Hullproof link in the site navigation. Not added.
-3. Launch offer line (FIRST500, 13.25 USD) is shown under the hero buttons and in the closing band, with no counter.
+3. Launch offer line (FIRST500, 15% off) is shown under the hero buttons and in the closing band, with no counter.
 
 ## Checks before reporting
 
