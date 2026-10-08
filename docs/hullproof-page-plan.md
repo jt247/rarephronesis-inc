@@ -36,3 +36,9 @@ Same navy and gold tokens, Plus Jakarta Sans and Inter, section rhythm and conta
 ## Checks before reporting
 
 Build and lint, dash search in the new files, link check, contrast, keyboard path, 360px and desktop screenshots.
+
+## Decisions locked by JT (2026-10-08)
+
+1. Support stays as GitHub issues only. hello@rarephronesis.com may be used later, not now.
+2. No Hullproof link in the site navigation.
+3. The FIRST500 line stays under the hero buttons and in the closing band.
