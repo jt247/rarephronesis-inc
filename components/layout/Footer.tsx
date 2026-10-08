@@ -69,6 +69,62 @@ const legalLinks = [
   { href: "/cookie-policy", label: "Cookie Policy" },
 ];
 
+interface ProductLink {
+  label: string;
+  href?: string;
+}
+
+// No href renders plain text until the item has a public page.
+const toolLinks: ProductLink[] = [
+  { label: "Hullproof", href: "/hullproof" },
+  { label: "QAForge", href: "https://github.com/jt247/qaforge" },
+  { label: "ResearchOps Agent" },
+];
+
+const productLinks: ProductLink[] = [
+  { label: "Product Nerve AI", href: "https://productnerve.com" },
+  { label: "LogPal AI", href: "https://logpalai.com" },
+  { label: "Resulo AI" },
+];
+
+function ProductList({ title, items }: { title: string; items: ProductLink[] }) {
+  const itemStyle = { color: "hsl(210 15% 55%)", fontFamily: "var(--font-body)" };
+  const itemClass = "text-sm transition-colors duration-150 hover:text-primary";
+  return (
+    <nav aria-label={title}>
+      <p className="font-display font-semibold text-sm mb-4" style={{ color: "hsl(210 20% 92%)" }}>
+        {title}
+      </p>
+      <ul className="flex flex-col gap-3">
+        {items.map(({ label, href }) => (
+          <li key={label}>
+            {!href ? (
+              <span className="text-sm" style={itemStyle}>
+                {label}
+              </span>
+            ) : href.startsWith("/") ? (
+              <Link href={href} className={itemClass} style={itemStyle}>
+                {label}
+              </Link>
+            ) : (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={itemClass}
+                style={itemStyle}
+              >
+                {label}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 const socials = [
   { Icon: InstagramIcon, href: "#", label: "Instagram" },
   { Icon: XIcon, href: "#", label: "X" },
@@ -160,9 +216,9 @@ export function Footer() {
 
       {/* Main footer */}
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2">
             <p className="font-display text-lg font-bold tracking-tight mb-3" style={{ color: "hsl(210 20% 92%)" }}>
               Rare <span style={{ color: "hsl(45 100% 44%)" }}>Phronesis</span>
             </p>
@@ -210,6 +266,9 @@ export function Footer() {
               </li>
             </ul>
           </nav>
+
+          <ProductList title="Tools" items={toolLinks} />
+          <ProductList title="Products" items={productLinks} />
 
           {/* Legal */}
           <nav aria-label="Legal links">
